@@ -1,0 +1,14 @@
+{
+  "name": "EL Section 4 Signals",
+  "short_name": "EL S4 Signals",
+  "description": "Elizabeth Line Section 4 — Hayes & Harlington to Heathrow Airport · XR Issue 2 09/21",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0c0f",
+  "theme_color": "#0a0c0f",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
