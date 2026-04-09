@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="EL S4 Signals">
+<meta name="theme-color" content="#0a0c0f">
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/icons/icon-192.png">
+<title>EL Section 4 · Signal Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@500;600;700&display=swap">
+<style>
+:root{--bg:#0a0c0f;--panel:#111418;--panel2:#13181f;--border:#1e2530;--bb:#2a3545;--text:#c8d4e0;--dim:#4a5a6a;--bright:#e8f0f8;--acc:#0088cc;--acc2:#00ccaa;--pur:#9B4F96;--mono:'Share Tech Mono',monospace;--sans:'Rajdhani',system-ui,sans-serif;--sat:env(safe-area-inset-top,0px);--sab:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;overscroll-behavior:none;background:var(--bg)}
+body{color:var(--text);font-family:var(--sans);font-size:15px;-webkit-font-smoothing:antialiased;overflow:hidden;height:100dvh}
+.hdr{position:fixed;top:0;left:0;right:0;z-index:200;background:var(--panel);border-bottom:2px solid var(--pur);padding-top:var(--sat)}
+.hdr-inner{height:54px;display:flex;align-items:center;gap:12px;padding:0 14px}
+.logo{display:flex;flex-direction:column;gap:3px;flex-shrink:0}
+.logo-bar{width:28px;height:6px;background:var(--pur);border-radius:3px}
+.logo-dot{width:10px;height:10px;background:#00aa55;border-radius:50%;margin-left:18px;margin-top:-2px}
+.hdr-t{flex:1;min-width:0}
+.hdr-t h1{font-family:var(--sans);font-weight:700;font-size:15px;letter-spacing:.05em;text-transform:uppercase;color:var(--bright);line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr-t p{font-family:var(--mono);font-size:9px;color:var(--dim);margin-top:3px}
+.srch{position:fixed;left:0;right:0;z-index:190;background:var(--panel);border-bottom:1px solid var(--border);padding:8px 14px 10px;display:flex;flex-direction:column;gap:8px}
+.srch-row{position:relative}
+.srch-ico{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:15px;color:var(--dim);pointer-events:none}
+input[type=search]{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--bb);color:var(--bright);font-family:var(--mono);font-size:14px;padding:10px 10px 10px 34px;border-radius:10px;outline:none;-webkit-appearance:none;appearance:none;transition:border-color .2s}
+input:focus{border-color:var(--acc);background:rgba(0,136,204,.06)}
+input::placeholder{color:var(--dim)}
+input::-webkit-search-cancel-button{-webkit-appearance:none}
+.chips{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;scrollbar-width:none;padding-bottom:2px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex-shrink:0;background:transparent;border:1px solid var(--bb);color:var(--dim);font-family:var(--mono);font-size:11px;padding:5px 12px;border-radius:20px;cursor:pointer;white-space:nowrap;outline:none;-webkit-appearance:none;transition:all .15s}
+.chip:active{transform:scale(.95)}
+.c-all.on{background:#15202f;border-color:var(--acc);color:var(--acc)}
+.c-dn.on{background:#0a2535;border-color:#0a4560;color:#44bbee}
+.c-up.on{background:#0a3520;border-color:#0a5030;color:#44ee88}
+.c-mn.on{background:#0f2a0f;border-color:#1a5a1a;color:#55ee55}
+.c-pl.on{background:#2a1800;border-color:#5a3000;color:#ffaa22}
+.c-lc.on{background:#15202f;border-color:var(--acc);color:var(--acc)}
+.scroll{position:fixed;left:0;right:0;bottom:0;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding-bottom:var(--sab)}
+.stats{background:#0c0f13;border-bottom:1px solid var(--border);padding:6px 14px;display:flex;gap:20px;font-family:var(--mono);font-size:10px;color:var(--dim);position:sticky;top:0;z-index:10}
+.stats span{color:var(--acc2);font-weight:bold}
+.lb{border-bottom:1px solid var(--border)}
+.lh{background:var(--panel2);padding:11px 14px;display:flex;align-items:center;gap:10px;cursor:pointer;user-select:none;-webkit-user-select:none;border-bottom:1px solid var(--border);transition:background .15s}
+.lh:active{background:#1a2535}
+.lchev{font-size:9px;color:var(--dim);transition:transform .25s ease;flex-shrink:0;width:14px;text-align:center}
+.lb.col .lchev{transform:rotate(-90deg)}
+.ln{font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--bright);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lm{font-family:var(--mono);font-size:10px;color:var(--acc);white-space:nowrap;flex-shrink:0}
+.lct{font-family:var(--mono);font-size:10px;color:var(--dim);white-space:nowrap;flex-shrink:0;background:rgba(255,255,255,.04);padding:2px 6px;border-radius:8px}
+.lbody{display:block}.lb.col .lbody{display:none}
+.sg{border-bottom:1px solid rgba(30,37,48,.8)}
+.sgh{background:#0d1015;padding:8px 14px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.sid{font-family:var(--mono);font-size:14px;font-weight:bold;color:var(--bright);flex-shrink:0}
+.dirtag{font-size:9px;font-family:var(--sans);font-weight:700;letter-spacing:.1em;padding:2px 8px;border-radius:10px;text-transform:uppercase;flex-shrink:0}
+.dirtag.dn{background:#0a2535;color:#44bbee;border:1px solid #0a4560}
+.dirtag.up{background:#0a3520;color:#44ee88;border:1px solid #0a5030}
+.rr{padding:8px 14px;border-bottom:1px solid #141a22;display:grid;grid-template-columns:1fr auto;gap:3px 10px;align-items:start}
+.rr:last-child{border-bottom:none}.rr:active{background:#12181f}
+.rl{font-family:var(--mono);font-size:11px;color:var(--text);line-height:1.4;grid-column:1;grid-row:1}
+.rd{font-family:var(--mono);font-size:11px;color:var(--acc);grid-column:1;grid-row:2}
+.rd::before{content:'→ ';color:var(--dim)}
+.rright{grid-column:2;grid-row:1/3;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.asp{font-family:var(--mono);font-size:9px;padding:2px 7px;border-radius:5px;flex-shrink:0}
+.asp.m{background:#0f2a0f;color:#55ee55;border:1px solid #1a5a1a}
+.asp.p{background:#2a1800;color:#ffaa22;border:1px solid #5a3000}
+.ind{font-family:var(--mono);font-size:11px;text-align:right;white-space:nowrap}
+.i0{color:var(--dim)}.i1{color:#88bbff}.i2{color:#ffdd44;font-weight:bold}.i3{color:#ff8844}.i4{color:var(--text)}
+.empty{text-align:center;padding:80px 20px;color:var(--dim);font-family:var(--mono)}
+.overlay{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.7);display:none;align-items:flex-end;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+.overlay.open{display:flex}
+.sheet{width:100%;background:var(--panel);border-radius:20px 20px 0 0;border-top:2px solid var(--pur);max-height:72dvh;display:flex;flex-direction:column;padding-bottom:var(--sab)}
+.sheet-handle{width:40px;height:4px;background:var(--bb);border-radius:2px;margin:12px auto 0}
+.sheet-title{font-family:var(--sans);font-weight:700;font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--bright);padding:12px 16px 10px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.sheet-close{font-size:22px;color:var(--dim);cursor:pointer;line-height:1}
+.sheet-list{overflow-y:auto;-webkit-overflow-scrolling:touch;flex:1}
+.sheet-item{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+.sheet-item:active{background:var(--panel2)}
+.sheet-item.sel .item-name{color:var(--acc)}
+.item-name{font-family:var(--sans);font-size:15px;color:var(--bright);font-weight:500}
+.item-mile{font-family:var(--mono);font-size:10px;color:var(--dim);margin-top:2px}
+.item-check{color:var(--acc);font-size:18px;font-weight:bold}
+mark{background:rgba(0,136,204,.25);color:var(--bright);border-radius:2px;padding:0 2px}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:var(--bb);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="hdr"><div class="hdr-inner"><div class="logo"><div class="logo-bar"></div><div class="logo-dot"></div></div><div class="hdr-t"><h1>Elizabeth Line · Section 4</h1><p>Hayes &amp; Harlington ↔ Heathrow Airport · XR Issue 2 · 09/21</p></div></div></div>
+<div class="srch" id="srch">
+  <div class="srch-row"><span class="srch-ico">⌕</span><input type="search" id="q" placeholder="Search signal, route, destination…" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></div>
+  <div class="chips">
+    <button class="chip c-all" id="c-all">All</button>
+    <button class="chip c-dn" id="c-dn">↓ Down</button>
+    <button class="chip c-up" id="c-up">↑ Up</button>
+    <button class="chip c-mn" id="c-mn">Main</button>
+    <button class="chip c-pl" id="c-pl">PL</button>
+    <button class="chip c-lc" id="c-lc">📍 Location</button>
+  </div>
+</div>
+<div class="scroll" id="scroll">
+  <div class="stats">Signals: <span id="ss">—</span>&ensp;Routes: <span id="sr">—</span>&ensp;Locations: <span id="sl">—</span></div>
+  <div id="content"></div>
+</div>
+<div class="overlay" id="overlay"><div class="sheet"><div class="sheet-handle"></div><div class="sheet-title"><span>Select Location</span><span class="sheet-close" id="sheet-close">✕</span></div><div class="sheet-list" id="sheet-list"></div></div></div>
+<script>
+const D=[{l:"Heathrow Terminal 4",m:"26520m",s:"SN345",d:"UP",r:"Platform 1 Stop block",t:"—",a:"M",i:"1 (SI)"},{l:"Heathrow Terminal 4",m:"26520m",s:"SN345",d:"UP",r:"Platform 1 Stop block",t:"—",a:"PL",i:"1 (SI)"},{l:"Heathrow Terminal 4",m:"26520m",s:"SN345",d:"UP",r:"Platform 2 Stop block",t:"—",a:"M",i:"2 (SI)"},{l:"Heathrow Terminal 4",m:"26520m",s:"SN345",d:"UP",r:"Platform 2 Stop block",t:"—",a:"PL",i:"2 (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN361",d:"UP",r:"Platform 3 Stop block",t:"—",a:"M",i:"3 (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN361",d:"UP",r:"Platform 3 Stop block",t:"—",a:"PL",i:"3 (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN361",d:"UP",r:"Platform 4 Stop block",t:"—",a:"M",i:"4 (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN361",d:"UP",r:"Platform 4 Stop block",t:"—",a:"PL",i:"4 (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN397",d:"UP",r:"Platform 3 Stop block",t:"—",a:"M",i:"3 (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN397",d:"UP",r:"Platform 3 Stop block",t:"—",a:"PL",i:"3 (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN397",d:"UP",r:"Platform 4 Stop block",t:"—",a:"M",i:"4 (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN397",d:"UP",r:"Platform 4 Stop block",t:"—",a:"PL",i:"4 (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN362",d:"UP",r:"Up Terminal 5",t:"SN360",a:"M",i:"U (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN362",d:"UP",r:"Down Terminal 5 (Up)",t:"SN396",a:"M",i:"D (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN364",d:"UP",r:"Up Terminal 5",t:"SN360",a:"M",i:"U (SI)"},{l:"Heathrow Terminal 5",m:"26285m",s:"SN364",d:"UP",r:"Down Terminal 5 (Up)",t:"SN396",a:"M",i:"D (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN331",d:"DN",r:"Down Airport",t:"SN335",a:"M",i:"-----"},{l:"Heathrow Central",m:"23550m",s:"SN331",d:"DN",r:"Down Airport",t:"SN335",a:"PL",i:"-----"},{l:"Heathrow Central",m:"23550m",s:"SN333",d:"DN",r:"Up Airport (Down)",t:"SN337",a:"M",i:"-----"},{l:"Heathrow Central",m:"23550m",s:"SN333",d:"DN",r:"Up Airport (Down)",t:"SN337",a:"PL",i:"-----"},{l:"Heathrow Central",m:"23550m",s:"SN335",d:"DN",r:"Down Terminal 4",t:"SN345",a:"M",i:"4 (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN335",d:"DN",r:"Down Terminal 5",t:"SN357",a:"M",i:"D (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN337",d:"DN",r:"Down Terminal 4",t:"SN345",a:"M",i:"4 (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN337",d:"DN",r:"Down Terminal 5",t:"SN357",a:"M",i:"D (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN337",d:"DN",r:"Up Terminal 5 (Down)",t:"SN391",a:"M",i:"U (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN340",d:"DN",r:"Up Airport",t:"SN336",a:"M",i:"2 (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN340",d:"DN",r:"Up Airport",t:"SN336",a:"PL",i:"2 (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN340",d:"DN",r:"Down Airport (Up)",t:"SN334",a:"M",i:"1 (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN340",d:"DN",r:"Down Airport (Up)",t:"SN334",a:"PL",i:"1 (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN356",d:"DN",r:"Up Airport",t:"SN336",a:"M",i:"-----"},{l:"Heathrow Central",m:"23550m",s:"SN356",d:"DN",r:"Up Airport",t:"SN336",a:"PL",i:"-----"},{l:"Heathrow Central",m:"23550m",s:"SN392",d:"DN",r:"Up Airport",t:"SN336",a:"M",i:"2 (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN392",d:"DN",r:"Up Airport",t:"SN336",a:"PL",i:"2 (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN392",d:"DN",r:"Down Airport (Up)",t:"SN334",a:"M",i:"1 (SI)"},{l:"Heathrow Central",m:"23550m",s:"SN392",d:"DN",r:"Down Airport (Up)",t:"SN334",a:"PL",i:"1 (SI)"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN321",d:"DN",r:"Down Airport",t:"SN327",a:"M",i:"-----"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN321",d:"DN",r:"Up Airport (Down)",t:"SN329",a:"M",i:"Position 4"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN323",d:"DN",r:"Down Airport",t:"SN327",a:"M",i:"-----"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN323",d:"DN",r:"Up Airport (Down)",t:"SN329",a:"M",i:"Position 4"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN325",d:"DN",r:"Down Airport",t:"SN327",a:"M",i:"Position 1"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN325",d:"DN",r:"Up Airport (Down)",t:"SN329",a:"M",i:"-----"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN324",d:"UP",r:"Up Airport",t:"SN316",a:"M",i:"U (SI)"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN324",d:"UP",r:"Down Airport Relief (Up)",t:"SN320",a:"M",i:"D (SI)"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN324",d:"UP",r:"Down Airport (Up)",t:"SN318",a:"M",i:"X (SI)"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN326",d:"UP",r:"Up Airport",t:"SN316",a:"M",i:"U (SI)"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN326",d:"UP",r:"Down Airport Relief (Up)",t:"SN320",a:"M",i:"D (SI)"},{l:"Heathrow Tunnel Junction",m:"12m 27c",s:"SN326",d:"UP",r:"Down Airport (Up)",t:"SN318",a:"M",i:"X (SI)"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN285",d:"DN",r:"Down Airport",t:"SN319",a:"M",i:"Position 1"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN285",d:"DN",r:"Down Main",t:"SN305",a:"M",i:"-----"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN287",d:"UP",r:"Up Airport",t:"SN301",a:"M",i:"Position 1"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN287",d:"UP",r:"Down Relief",t:"SN303",a:"M",i:"-----"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN289",d:"DN",r:"Down Relief",t:"SN303",a:"M",i:"D (SI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN289",d:"DN",r:"Up Relief (Dn Direction)",t:"SN293",a:"M",i:"X (SI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN289",d:"DN",r:"Up Airport Relief",t:"SN291",a:"M",i:"A (SI)"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN293",d:"UP",r:"Dawley Up Goods Loop",t:"SN6207",a:"PL",i:"-----"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN300",d:"UP",r:"Up Relief",t:"SN284",a:"M",i:"R (SI)"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN300",d:"UP",r:"Up Main",t:"SN280",a:"M",i:"M (SI)"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN303",d:"UP",r:"Up Airport (Down)",t:"SN313",a:"M",i:"Position 1"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN303",d:"UP",r:"Down Relief",t:"SN307",a:"M",i:"-----"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN316",d:"UP",r:"Up Airport Relief",t:"SN292",a:"M",i:"-----"},{l:"Airport Junction",m:"11m 13c-52c",s:"SN316",d:"UP",r:"Up Airport",t:"SN300",a:"M",i:"Position 4"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN279",d:"DN",r:"Up Relief",t:"SN289",a:"M",i:"UR (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN279",d:"DN",r:"Up Relief",t:"SN289",a:"PL",i:"UR (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN279",d:"DN",r:"Platform 5 Bay Stop block",t:"—",a:"M",i:"B (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN279",d:"DN",r:"Platform 5 Bay Stop block",t:"—",a:"PL",i:"B (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN279",d:"DN",r:"Siding Stop block",t:"—",a:"PL",i:"S (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN281",d:"DN",r:"Up Relief",t:"SN289",a:"M",i:"-----"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN281",d:"DN",r:"Bay Buffer stop",t:"—",a:"M",i:"B (SI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN281",d:"DN",r:"Bay Buffer stop",t:"—",a:"PL",i:"B (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN283",d:"DN",r:"Down Relief",t:"SN287",a:"M",i:"-----"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN283",d:"DN",r:"Up Relief",t:"SN289",a:"M",i:"Position 4"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN283",d:"DN",r:"Bay Buffer stop",t:"—",a:"M",i:"B (SI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN283",d:"DN",r:"Bay Buffer stop",t:"—",a:"PL",i:"B (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN6195",d:"DN",r:"Up Relief",t:"SN289",a:"PL",i:"-----"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN6195",d:"DN",r:"Platform 5 Bay Stop block",t:"—",a:"PL",i:"-----"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN6195",d:"DN",r:"Siding Stop block",t:"—",a:"PL",i:"-----"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN278",d:"UP",r:"Up Main",t:"SN270",a:"M",i:"Position 1"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN278",d:"UP",r:"Down Main Reversible",t:"SN268",a:"M",i:"-----"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN280",d:"UP",r:"Up Main",t:"SN270",a:"M",i:"-----"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN282",d:"UP",r:"Sidings Stop block",t:"—",a:"PL",i:"S (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN282",d:"UP",r:"Up Goods Loop",t:"SN272",a:"M",i:"G (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN282",d:"UP",r:"Up Goods Loop",t:"SN6194",a:"PL",i:"G (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN282",d:"UP",r:"Up Relief",t:"SN276",a:"M",i:"UR (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN284",d:"UP",r:"Sidings Stop block",t:"—",a:"PL",i:"S (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN284",d:"UP",r:"Up Goods Loop",t:"SN272",a:"M",i:"Position 1"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN284",d:"UP",r:"Up Goods Loop",t:"SN6194",a:"PL",i:"G (MI)"},{l:"Hayes & Harlington",m:"10m 71c",s:"SN284",d:"UP",r:"Up Relief",t:"SN276",a:"M",i:"-----"}];
+let fDir='',fAsp='',fLoc='',q='';const col=new Set();
+function fit(){const h=document.querySelector('.hdr').offsetHeight;const s=document.getElementById('srch').offsetHeight;document.getElementById('scroll').style.top=(h+s)+'px';}
+function filter(){return D.filter(r=>{if(fDir&&r.d!==fDir)return false;if(fAsp==='M'&&r.a!=='M')return false;if(fAsp==='PL'&&r.a!=='PL')return false;if(fLoc&&r.l!==fLoc)return false;if(q){const h=[r.l,r.s,r.r,r.t,r.i].join(' ').toLowerCase();if(!h.includes(q))return false;}return true;});}
+function e(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function hl(t,q){if(!q)return e(t);return e(t).replace(new RegExp('('+q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi'),'<mark>$1</mark>');}
+function ic(i){if(!i||i==='-----')return 'i0';if(/^Position/i.test(i))return 'i1';if(/\(SI\)/.test(i))return 'i2';if(/\(MI\)/.test(i))return 'i3';return 'i4';}
+function render(){
+  const data=filter();const map={},ord=[];
+  for(const r of data){if(!map[r.l]){map[r.l]=[];ord.push(r.l);}map[r.l].push(r);}
+  document.getElementById('ss').textContent=new Set(data.map(r=>r.s)).size;
+  document.getElementById('sr').textContent=data.length;
+  document.getElementById('sl').textContent=ord.length;
+  const ct=document.getElementById('content');
+  if(!data.length){ct.innerHTML='<div class="empty"><div class="empty-icon">⊘</div><p>No signals match</p></div>';return;}
+  let h='';
+  for(const loc of ord){
+    const rows=map[loc];const mile=rows[0].m;
+    const sm={},so=[];
+    for(const r of rows){if(!sm[r.s]){sm[r.s]=[];so.push(r.s);}sm[r.s].push(r);}
+    let body='';
+    for(const sig of so){
+      const sr=sm[sig];const dir=sr[0].d;
+      const db=dir==='DN'?'<span class="dirtag dn">↓ DN</span>':'<span class="dirtag up">↑ UP</span>';
+      let rh='';
+      for(const r of sr){
+        const ab=r.a==='M'?'<span class="asp m">Main</span>':'<span class="asp p">PL</span>';
+        rh+=`<div class="rr"><div class="rl">${hl(r.r,q)}</div><div class="rd">${hl(r.t,q)}</div><div class="rright">${ab}<span class="ind ${ic(r.i)}">${hl(r.i,q)}</span></div></div>`;
+      }
+      body+=`<div class="sg"><div class="sgh"><span class="sid">${hl(sig,q)}</span>${db}</div>${rh}</div>`;
+    }
+    h+=`<div class="lb${col.has(loc)?' col':''}" data-loc="${e(loc)}"><div class="lh"><span class="lchev">▼</span><span class="ln">${hl(loc,q)}</span><span class="lm">${mile}</span><span class="lct">${rows.length}</span></div><div class="lbody">${body}</div></div>`;
+  }
+  ct.innerHTML=h;
+  ct.querySelectorAll('.lh').forEach(h=>{h.addEventListener('click',()=>{const b=h.closest('.lb');const loc=b.dataset.loc;b.classList.toggle('col');col.has(loc)?col.delete(loc):col.add(loc);});});
+}
+function setChips(){
+  document.getElementById('c-all').classList.toggle('on',!fDir&&!fAsp&&!fLoc);
+  document.getElementById('c-dn').classList.toggle('on',fDir==='DN');
+  document.getElementById('c-up').classList.toggle('on',fDir==='UP');
+  document.getElementById('c-mn').classList.toggle('on',fAsp==='M');
+  document.getElementById('c-pl').classList.toggle('on',fAsp==='PL');
+  document.getElementById('c-lc').classList.toggle('on',!!fLoc);
+}
+document.getElementById('c-all').onclick=()=>{fDir='';fAsp='';fLoc='';document.getElementById('c-lc').textContent='📍 Location';setChips();render();};
+document.getElementById('c-dn').onclick=()=>{fDir=fDir==='DN'?'':'DN';setChips();render();};
+document.getElementById('c-up').onclick=()=>{fDir=fDir==='UP'?'':'UP';setChips();render();};
+document.getElementById('c-mn').onclick=()=>{fAsp=fAsp==='M'?'':'M';setChips();render();};
+document.getElementById('c-pl').onclick=()=>{fAsp=fAsp==='PL'?'':'PL';setChips();render();};
+document.getElementById('c-lc').onclick=openSheet;
+document.getElementById('q').addEventListener('input',ev=>{q=ev.target.value.trim().toLowerCase();render();});
+const LOCS=[...new Set(D.map(r=>r.l))];
+function openSheet(){
+  const list=document.getElementById('sheet-list');
+  list.innerHTML=`<div class="sheet-item${!fLoc?' sel':''}" data-loc=""><div><div class="item-name">All Locations</div></div>${!fLoc?'<span class="item-check">✓</span>':''}</div>`+LOCS.map(loc=>{const m=D.find(r=>r.l===loc).m;const s=fLoc===loc;return `<div class="sheet-item${s?' sel':''}" data-loc="${e(loc)}"><div><div class="item-name">${e(loc)}</div><div class="item-mile">${m}</div></div>${s?'<span class="item-check">✓</span>':''}</div>`;}).join('');
+  list.querySelectorAll('.sheet-item').forEach(item=>{item.addEventListener('click',()=>{fLoc=item.dataset.loc;document.getElementById('c-lc').textContent=fLoc?'📍 '+fLoc.substring(0,18):'📍 Location';closeSheet();setChips();render();});});
+  document.getElementById('overlay').classList.add('open');
+}
+function closeSheet(){document.getElementById('overlay').classList.remove('open');}
+document.getElementById('sheet-close').addEventListener('click',closeSheet);
+document.getElementById('overlay').addEventListener('click',e=>{if(e.target===document.getElementById('overlay'))closeSheet();});
+if('serviceWorker' in navigator)navigator.serviceWorker.register('/sw.js').catch(()=>{});
+window.addEventListener('resize',fit);
+fit();setChips();render();
+</script>
+</body>
+</html>
